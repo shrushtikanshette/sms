@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #5266c9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        a {
+            color: #667eea;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LOGIN PAGE -->
+        <div id="loginPage">
+            <h2>Login</h2>
+
+            <input type="email" id="loginEmail"
+                   placeholder="Enter Email" required>
+
+            <input type="password" id="loginPassword"
+                   placeholder="Enter Password" required>
+
+            <button onclick="login()">Login</button>
+
+            <p>Don't have an account?
+                <a onclick="showRegister()">Register</a>
+            </p>
+        </div>
+
+        <!-- REGISTRATION PAGE -->
+        <div id="registerPage" class="hidden">
+            <h2>Registration Form</h2>
+
+            <input type="text" id="name"
+                   placeholder="Full Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Email Address" required>
+
+            <input type="tel" id="phone"
+                   placeholder="Phone Number" required>
+
+            <input type="password" id="password"
+                   placeholder="Create Password" required>
+
+            <input type="password" id="confirmPassword"
+                   placeholder="Confirm Password" required>
+
+            <button onclick="register()">Register Now</button>
+
+            <p>Already registered?
+                <a onclick="showLogin()">Login</a>
+            </p>
+        </div>
+
+        <!-- SUCCESS PAGE -->
+        <div id="successPage" class="hidden">
+            <h2>Registration Successful!</h2>
+            <p>Welcome! Your registration is complete.</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+    </div>
+
+    <script>
+
+        function showRegister() {
+            document.getElementById("loginPage").classList.add("hidden");
+            document.getElementById("registerPage").classList.remove("hidden");
+        }
+
+        function showLogin() {
+            document.getElementById("registerPage").classList.add("hidden");
+            document.getElementById("loginPage").classList.remove("hidden");
+        }
+
+        function login() {
+            let email = document.getElementById("loginEmail").value;
+            let password = document.getElementById("loginPassword").value;
+
+            if (!email || !password) {
+                alert("Please enter email and password");
+                return;
+            }
+
+            // Demo login: replace with server authentication
+            showRegister();
+        }
+
+        function register() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                alert("Please fill all fields");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            document.getElementById("registerPage").classList.add("hidden");
+            document.getElementById("successPage").classList.remove("hidden");
+        }
+
+        function logout() {
+            document.getElementById("successPage").classList.add("hidden");
+            document.getElementById("loginPage").classList.remove("hidden");
+        }
+
+    </script>
+
+</body>
+</html>
